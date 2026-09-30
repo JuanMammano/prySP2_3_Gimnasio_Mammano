@@ -2,6 +2,16 @@ namespace prySP2_3_Gimnasio_Mammano
 {
     public partial class frmInscripcion : Form
     {
+        const decimal MONTO_CASILLERO = 3000;
+        const decimal MONTO_MUSCULACION = 15000;
+        const decimal MONTO_NATACION = 22000;
+        const decimal MONTO_FUNCIONAL = 18000;
+        const int DESC_18 = 25;
+        const int DESC_65MAS = 30;
+        const int DESC_ESTUDIANTE = 15;
+        const int PAGO_EFECTIVO = 10;
+        const int RECA_3CUO = 10;
+        const int RECA_6CUO = 20;
         public frmInscripcion()
         {
             InitializeComponent();
@@ -30,6 +40,19 @@ namespace prySP2_3_Gimnasio_Mammano
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpieza();
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            string nombre = " ";
+            int edad = 0;
+            string meses = " ";
+            decimal precioMensual = 0;
+            decimal subTotal = 0;
+            int porcDescuento = 0;
+            int porcAjuste = 0;
+            decimal total = 0;
+            decimal valorCuota = 0;
         }
     }
 }
