@@ -80,6 +80,7 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(159, 23);
             txtNombre.TabIndex = 1;
+            txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // txtEdad
             // 
@@ -88,6 +89,7 @@
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(52, 23);
             txtEdad.TabIndex = 3;
+            txtEdad.TextChanged += txtEdad_TextChanged;
             // 
             // lblCantMeses
             // 
@@ -105,6 +107,8 @@
             txtMeses.Name = "txtMeses";
             txtMeses.Size = new Size(70, 23);
             txtMeses.TabIndex = 5;
+            txtMeses.TextChanged += txtMeses_TextChanged;
+            txtMeses.KeyPress += txtMeses_KeyPress;
             // 
             // lblCasillero
             // 
@@ -258,6 +262,7 @@
             // 
             // btnCalcular
             // 
+            btnCalcular.Enabled = false;
             btnCalcular.Location = new Point(64, 462);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(98, 36);
