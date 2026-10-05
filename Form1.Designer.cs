@@ -47,12 +47,12 @@
             cboPlan = new ComboBox();
             lblTurno = new Label();
             cboTurno = new ComboBox();
-            groupBox1 = new GroupBox();
+            grbPlan = new GroupBox();
             btnCalcular = new Button();
             btnLimpiar = new Button();
             grbPago.SuspendLayout();
             gpbDatosPersonales.SuspendLayout();
-            groupBox1.SuspendLayout();
+            grbPlan.SuspendLayout();
             SuspendLayout();
             // 
             // lblNombre
@@ -75,6 +75,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtNombre.Location = new Point(89, 27);
             txtNombre.MaxLength = 30;
             txtNombre.Name = "txtNombre";
@@ -90,6 +91,7 @@
             txtEdad.Size = new Size(52, 23);
             txtEdad.TabIndex = 3;
             txtEdad.TextChanged += txtEdad_TextChanged;
+            txtEdad.KeyPress += txtMeses_KeyPress;
             // 
             // lblCantMeses
             // 
@@ -149,6 +151,7 @@
             rbtTarjeta.TabStop = true;
             rbtTarjeta.Text = "Tarjeta";
             rbtTarjeta.UseVisualStyleBackColor = true;
+            rbtTarjeta.CheckedChanged += rbtTarjeta_CheckedChanged;
             // 
             // grbPago
             // 
@@ -165,6 +168,7 @@
             // cboCuotas
             // 
             cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCuotas.Enabled = false;
             cboCuotas.FormattingEnabled = true;
             cboCuotas.Items.AddRange(new object[] { "1 cuota ( Sin Recargo )", "3 cuotas (10% Recargo)", "6 cuotas (20% Recargo)" });
             cboCuotas.Location = new Point(183, 27);
@@ -243,22 +247,22 @@
             cboTurno.Size = new Size(157, 23);
             cboTurno.TabIndex = 3;
             // 
-            // groupBox1
+            // grbPlan
             // 
-            groupBox1.Controls.Add(lblCantMeses);
-            groupBox1.Controls.Add(cboTurno);
-            groupBox1.Controls.Add(txtMeses);
-            groupBox1.Controls.Add(lblTurno);
-            groupBox1.Controls.Add(lblCasillero);
-            groupBox1.Controls.Add(cboPlan);
-            groupBox1.Controls.Add(chkCasillero);
-            groupBox1.Controls.Add(lblPlan);
-            groupBox1.Location = new Point(30, 198);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(317, 179);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            grbPlan.Controls.Add(lblCantMeses);
+            grbPlan.Controls.Add(cboTurno);
+            grbPlan.Controls.Add(txtMeses);
+            grbPlan.Controls.Add(lblTurno);
+            grbPlan.Controls.Add(lblCasillero);
+            grbPlan.Controls.Add(cboPlan);
+            grbPlan.Controls.Add(chkCasillero);
+            grbPlan.Controls.Add(lblPlan);
+            grbPlan.Location = new Point(30, 198);
+            grbPlan.Name = "grbPlan";
+            grbPlan.Size = new Size(317, 179);
+            grbPlan.TabIndex = 1;
+            grbPlan.TabStop = false;
+            grbPlan.Text = "Plan";
             // 
             // btnCalcular
             // 
@@ -289,7 +293,7 @@
             ClientSize = new Size(397, 525);
             Controls.Add(btnLimpiar);
             Controls.Add(btnCalcular);
-            Controls.Add(groupBox1);
+            Controls.Add(grbPlan);
             Controls.Add(gpbDatosPersonales);
             Controls.Add(grbPago);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -302,8 +306,8 @@
             grbPago.PerformLayout();
             gpbDatosPersonales.ResumeLayout(false);
             gpbDatosPersonales.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            grbPlan.ResumeLayout(false);
+            grbPlan.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -328,7 +332,7 @@
         private ComboBox cboPlan;
         private Label lblTurno;
         private ComboBox cboTurno;
-        private GroupBox groupBox1;
+        private GroupBox grbPlan;
         private Button btnCalcular;
         private Button btnLimpiar;
     }

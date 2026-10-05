@@ -44,6 +44,7 @@ namespace prySP2_3_Gimnasio_Mammano
                 btnCalcular.Enabled = false;
             }
         }
+
         private void frmInscripcion_Load(object sender, EventArgs e)
         {
             Limpieza();
@@ -59,8 +60,9 @@ namespace prySP2_3_Gimnasio_Mammano
             int.Parse(txtEdad.Text);
             int.Parse(txtMeses.Text);
 
-            string nombre = " ";
+            string nombre = txtNombre.Text;
             int edad = 0;
+            int.Parse(txtEdad.Text);
             int meses = 0;
             meses = int.Parse(txtMeses.Text);
             decimal precioMensual = 0;
@@ -74,44 +76,76 @@ namespace prySP2_3_Gimnasio_Mammano
             string plan = cboPlan.Text;
             switch (plan)
             {
-                case "Musculación": precioMensual=MONTO_MUSCULACION;
+                case "Musculación":
+                    precioMensual = MONTO_MUSCULACION;
                     break;
-                case "Funcional": precioMensual = MONTO_FUNCIONAL;
+                case "Funcional":
+                    precioMensual = MONTO_FUNCIONAL;
                     break;
-                case "Natación": precioMensual = MONTO_NATACION;
+                case "Natación":
+                    precioMensual = MONTO_NATACION;
                     break;
-                default:MessageBox.Show("Plan invalido");
+                default:
+                    MessageBox.Show("Plan invalido");
                     break;
             }
             switch (cboTurno.SelectedIndex)
             {
-                case 0: turno = "Mañana";
+                case 0:
+                    turno = "Mañana";
                     break;
-                case 1: turno = "Tarde";
+                case 1:
+                    turno = "Tarde";
                     break;
-                case 2: turno = "Noche";
+                case 2:
+                    turno = "Noche";
                     break;
             }
-            if (chkCasillero.Checked==true) precioMensual = precioMensual + MONTO_CASILLERO;
-            subTotal = precioMensual * meses;
 
             if (edad < EDAD_MINIMA)
             {
                 MessageBox.Show("Edad no valida");
                 return;
             }
-            if (meses < 1 && meses>13)
+            if (meses < 1 && meses > 13)
             {
                 MessageBox.Show("Ingrese un mes valido...Panchxsx");
                 return;
             }
 
+            if (chkCasillero.Checked == true) precioMensual = precioMensual + MONTO_CASILLERO;
+            subTotal = precioMensual * meses;
 
+            if (edad < 19)
+            {
+                porcDescuento = DESC_18;
+
+            }
+            else
+            {
+                if (edad > 64)
+                {
+                    porcDescuento = DESC_65MAS;
+                }
+                else
+                {
+                    if (chkEstudiante.Checked = true)
+                    {
+                        porcDescuento = DESC_ESTUDIANTE;
+                    }
+                    else
+                    {
+                        porcDescuento = 0;
+                    }
+                }
+            }
+            subTotal = (subTotal * porcDescuento) / 100;
         }
+
 
         private void txtEdad_TextChanged(object sender, EventArgs e)
         {
-            validacionCaracteres();
+
         }
 
         private void txtMeses_TextChanged(object sender, EventArgs e)
@@ -132,8 +166,20 @@ namespace prySP2_3_Gimnasio_Mammano
                 e.Handled = false;
             }
 
-            //char.IsDigit(e.KeyChar);
+        }
 
+        private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtTarjeta.Checked = true)
+            {
+                cboCuotas.Enabled = true;
+                cboCuotas.SelectedIndex = 0;
+            }
+            else 
+            {
+                cboCuotas.Enabled = false;
+                cboCuotas.SelectedIndex = -1;
+            }
         }
     }
 }
