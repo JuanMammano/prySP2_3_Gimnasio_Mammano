@@ -57,13 +57,10 @@ namespace prySP2_3_Gimnasio_Mammano
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            int.Parse(txtEdad.Text);
-            int.Parse(txtMeses.Text);
 
             string nombre = txtNombre.Text;
-            int edad = 0;
-            int.Parse(txtEdad.Text);
-            int meses = 0;
+            int edad = int.Parse(txtEdad.Text);
+            int meses = int.Parse(txtMeses.Text);
             meses = int.Parse(txtMeses.Text);
             decimal precioMensual = 0;
             decimal subTotal = 0;
@@ -129,7 +126,7 @@ namespace prySP2_3_Gimnasio_Mammano
                 }
                 else
                 {
-                    if (chkEstudiante.Checked = true)
+                    if (chkEstudiante.Checked == true)
                     {
                         porcDescuento = DESC_ESTUDIANTE;
                     }
@@ -140,6 +137,16 @@ namespace prySP2_3_Gimnasio_Mammano
                 }
             }
             subTotal = (subTotal * porcDescuento) / 100;
+
+            if (rbtEfectivo.Checked == true)
+            {
+                subTotal = subTotal - (subTotal * PAGO_EFECTIVO) / 100;
+            }
+            if (cboCuotas.SelectedIndex == 1)
+            {
+                subTotal = subTotal + (subTotal * RECA_3CUO) / 100;
+            }
+ 
         }
 
 
@@ -170,7 +177,7 @@ namespace prySP2_3_Gimnasio_Mammano
 
         private void rbtTarjeta_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbtTarjeta.Checked = true)
+            if (rbtTarjeta.Checked == true)
             {
                 cboCuotas.Enabled = true;
                 cboCuotas.SelectedIndex = 0;
@@ -178,7 +185,7 @@ namespace prySP2_3_Gimnasio_Mammano
             else 
             {
                 cboCuotas.Enabled = false;
-                cboCuotas.SelectedIndex = -1;
+                cboCuotas.SelectedIndex=-1;
             }
         }
     }
