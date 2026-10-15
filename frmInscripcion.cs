@@ -68,8 +68,9 @@ namespace prySP2_3_Gimnasio_Mammano
             int porcAjuste = 0;
             decimal total = 0;
             string turno = "";
-            
             string plan = cboPlan.Text;
+            int cuotas = 0;
+
             switch (plan)
             {
                 case "Musculación":
@@ -95,6 +96,19 @@ namespace prySP2_3_Gimnasio_Mammano
                     break;
                 case 2:
                     turno = "Noche";
+                    break;
+            }
+            
+            switch (cboCuotas.SelectedIndex)
+            {
+                case 0:
+                    cuotas = 1;
+                    break;
+                case 1:
+                    cuotas = 3;
+                    break;
+                case 2: 
+                    cuotas = 6;
                     break;
             }
 
@@ -151,13 +165,54 @@ namespace prySP2_3_Gimnasio_Mammano
             }
 
             string mayorMenor = (edad < 18) ? "Menor" : "Mayor";
-            Console.WriteLine(mayorMenor);
-            string formaPago = (rbtEfectivo.Checked) ? "Efectivo" : $"Tarjeta en {cboCuotas.SelectedIndex} ";
-            decimal valorCuota = (rbtEfectivo.Checked) ? subTotal : (total / cboCuotas.SelectedIndex);
-            Console.WriteLine($"Forma de pago: {formaPago}");
-            Console.WriteLine($"Valor de cada cuota: {valorCuota}");
+            string formaPago = (rbtEfectivo.Checked) ? "Efectivo" : $"Tarjeta en {cuotas} pagos";
+            decimal valorCuota = (rbtEfectivo.Checked) ? subTotal : (total / cuotas);
+            string esEstudiante = (chkEstudiante.Checked) ? "SI" : "NO";
 
+
+            SOCIO unSocio;
+            unSocio.nombre = txtNombre.Text;
+            unSocio.edad = int.Parse(txtEdad.Text);
+            unSocio.esEstudiante = esEstudiante;
+            unSocio.plan = cboPlan.Text;
+            unSocio.turno = cboTurno.Text;
+            unSocio.meses = int.Parse(txtMeses.Text);
+            unSocio.formaPago = formaPago;
+            unSocio.total = total;
+            unSocio.valorCuota = valorCuota;
+
+            string mensaje = "DATOS DEL SOCIO\n" +
+                             "----------------------------------------\n" +
+                             $"Nombre: {unSocio.nombre}\n" +
+                             $"Edad: {unSocio.edad}\n" +
+                             $"Es estudiante: {unSocio.esEstudiante}\n" +
+                             $"Plan: {unSocio.plan}\n" +
+                             $"Horario: {unSocio.turno}\n" +
+                             $"Meses: {unSocio.meses}\n" +
+                             $"Forma de pago: {unSocio.formaPago}\n" +
+                             $"Total: {unSocio.total.ToString("C2")}\n" +
+                             $"Valor de cuota: {unSocio.valorCuota.ToString("C2")}";
+
+
+            MessageBox.Show(mensaje, "Resultado del Socio", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+       
+
+            public struct SOCIO
+            {
+            public string nombre;
+            public int edad;
+            public string esEstudiante; 
+            public string plan;
+            public string turno;
+            public int meses;
+            public string formaPago;
+            public decimal total;
+            public decimal valorCuota;
+            }
+
+        
 
 
         private void txtEdad_TextChanged(object sender, EventArgs e)

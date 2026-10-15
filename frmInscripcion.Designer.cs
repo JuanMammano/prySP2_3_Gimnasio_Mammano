@@ -90,7 +90,7 @@
             // 
             txtEdad.Enabled = false;
             txtEdad.Location = new Point(89, 57);
-            txtEdad.MaxLength = 3;
+            txtEdad.MaxLength = 2;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(52, 24);
             txtEdad.TabIndex = 3;
