@@ -88,6 +88,7 @@
             // 
             // txtEdad
             // 
+            txtEdad.Enabled = false;
             txtEdad.Location = new Point(89, 57);
             txtEdad.MaxLength = 3;
             txtEdad.Name = "txtEdad";
@@ -108,6 +109,7 @@
             // 
             // txtMeses
             // 
+            txtMeses.Enabled = false;
             txtMeses.Location = new Point(161, 92);
             txtMeses.MaxLength = 2;
             txtMeses.Name = "txtMeses";
@@ -146,7 +148,6 @@
             rbtEfectivo.TabStop = true;
             rbtEfectivo.Text = "Efectivo";
             rbtEfectivo.UseVisualStyleBackColor = true;
-            //rbtEfectivo.CheckedChanged += this.rbtEfectivo_CheckedChanged;
             // 
             // rbtTarjeta
             // 
@@ -166,7 +167,7 @@
             grbPago.Controls.Add(cboCuotas);
             grbPago.Controls.Add(rbtTarjeta);
             grbPago.Controls.Add(rbtEfectivo);
-            grbPago.Font = new Font("Monotype Corsiva", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            grbPago.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             grbPago.Location = new Point(30, 383);
             grbPago.Name = "grbPago";
             grbPago.Size = new Size(317, 73);
@@ -178,11 +179,12 @@
             // 
             cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCuotas.Enabled = false;
+            cboCuotas.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             cboCuotas.FormattingEnabled = true;
             cboCuotas.Items.AddRange(new object[] { "1 cuota ( Sin Recargo )", "3 cuotas (10% Recargo)", "6 cuotas (20% Recargo)" });
             cboCuotas.Location = new Point(183, 27);
             cboCuotas.Name = "cboCuotas";
-            cboCuotas.Size = new Size(121, 25);
+            cboCuotas.Size = new Size(121, 23);
             cboCuotas.TabIndex = 2;
             // 
             // gpbDatosPersonales
@@ -193,7 +195,7 @@
             gpbDatosPersonales.Controls.Add(lblNombre);
             gpbDatosPersonales.Controls.Add(txtNombre);
             gpbDatosPersonales.Controls.Add(txtEdad);
-            gpbDatosPersonales.Font = new Font("Monotype Corsiva", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            gpbDatosPersonales.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             gpbDatosPersonales.Location = new Point(30, 63);
             gpbDatosPersonales.Name = "gpbDatosPersonales";
             gpbDatosPersonales.Size = new Size(317, 120);
@@ -233,12 +235,14 @@
             // cboPlan
             // 
             cboPlan.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPlan.Enabled = false;
             cboPlan.FormattingEnabled = true;
             cboPlan.Items.AddRange(new object[] { "Musculación", "Funcional", "Natación" });
             cboPlan.Location = new Point(68, 23);
             cboPlan.Name = "cboPlan";
-            cboPlan.Size = new Size(157, 25);
+            cboPlan.Size = new Size(157, 26);
             cboPlan.TabIndex = 1;
+            cboPlan.SelectedIndexChanged += cboPlan_SelectedIndexChanged;
             // 
             // lblTurno
             // 
@@ -253,12 +257,14 @@
             // cboTurno
             // 
             cboTurno.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTurno.Enabled = false;
             cboTurno.FormattingEnabled = true;
             cboTurno.Items.AddRange(new object[] { "Mañana", "Tarde", "Noche" });
             cboTurno.Location = new Point(68, 55);
             cboTurno.Name = "cboTurno";
-            cboTurno.Size = new Size(157, 25);
+            cboTurno.Size = new Size(157, 26);
             cboTurno.TabIndex = 3;
+            cboTurno.SelectedIndexChanged += cboTurno_SelectedIndexChanged;
             // 
             // grbPlan
             // 
@@ -270,7 +276,7 @@
             grbPlan.Controls.Add(cboPlan);
             grbPlan.Controls.Add(chkCasillero);
             grbPlan.Controls.Add(lblPlan);
-            grbPlan.Font = new Font("Monotype Corsiva", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            grbPlan.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             grbPlan.Location = new Point(30, 198);
             grbPlan.Name = "grbPlan";
             grbPlan.Size = new Size(317, 179);

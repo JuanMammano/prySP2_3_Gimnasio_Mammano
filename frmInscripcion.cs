@@ -67,9 +67,8 @@ namespace prySP2_3_Gimnasio_Mammano
             int porcDescuento = 0;
             int porcAjuste = 0;
             decimal total = 0;
-            decimal valorCuota = 0;
             string turno = "";
-
+            
             string plan = cboPlan.Text;
             switch (plan)
             {
@@ -140,19 +139,30 @@ namespace prySP2_3_Gimnasio_Mammano
 
             if (rbtEfectivo.Checked == true)
             {
-                subTotal = subTotal - (subTotal * PAGO_EFECTIVO) / 100;
+                total = subTotal - (subTotal * PAGO_EFECTIVO) / 100;
             }
-            if (cboCuotas.SelectedIndex == 1)
+            if (rbtTarjeta.Checked == true && cboCuotas.SelectedIndex == 1)
             {
-                subTotal = subTotal + (subTotal * RECA_3CUO) / 100;
+                total = subTotal + (subTotal * RECA_3CUO) / 100;
             }
- 
+            else if (rbtTarjeta.Checked == true && cboCuotas.SelectedIndex == 2)
+            {
+                total = subTotal + (subTotal * RECA_6CUO) / 100;
+            }
+
+            string mayorMenor = (edad < 18) ? "Menor" : "Mayor";
+            Console.WriteLine(mayorMenor);
+            string formaPago = (rbtEfectivo.Checked) ? "Efectivo" : $"Tarjeta en {cboCuotas.SelectedIndex} ";
+            decimal valorCuota = (rbtEfectivo.Checked) ? subTotal : (total / cboCuotas.SelectedIndex);
+            Console.WriteLine($"Forma de pago: {formaPago}");
+            Console.WriteLine($"Valor de cada cuota: {valorCuota}");
+
         }
 
 
         private void txtEdad_TextChanged(object sender, EventArgs e)
         {
-
+            cboPlan.Enabled = true;
         }
 
         private void txtMeses_TextChanged(object sender, EventArgs e)
@@ -163,6 +173,7 @@ namespace prySP2_3_Gimnasio_Mammano
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             validacionCaracteres();
+            txtEdad.Enabled = true;
         }
 
         private void txtMeses_KeyPress(object sender, KeyPressEventArgs e)
@@ -182,11 +193,21 @@ namespace prySP2_3_Gimnasio_Mammano
                 cboCuotas.Enabled = true;
                 cboCuotas.SelectedIndex = 0;
             }
-            else 
+            else
             {
                 cboCuotas.Enabled = false;
-                cboCuotas.SelectedIndex=-1;
+                cboCuotas.SelectedIndex = -1;
             }
+        }
+
+        private void cboTurno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtMeses.Enabled = true;
+        }
+
+        private void cboPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboTurno.Enabled = true;
         }
     }
 }
