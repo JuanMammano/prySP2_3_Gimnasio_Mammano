@@ -13,6 +13,8 @@ namespace prySP2_3_Gimnasio_Mammano
         const int RECA_3CUO = 10;
         const int RECA_6CUO = 20;
         const int EDAD_MINIMA = 16;
+        int i = 1;
+        string[] nombres = new string[10];
         public frmInscripcion()
         {
             InitializeComponent();
@@ -86,6 +88,7 @@ namespace prySP2_3_Gimnasio_Mammano
                     MessageBox.Show("Plan invalido");
                     break;
             }
+
             switch (cboTurno.SelectedIndex)
             {
                 case 0:
@@ -98,7 +101,7 @@ namespace prySP2_3_Gimnasio_Mammano
                     turno = "Noche";
                     break;
             }
-            
+
             switch (cboCuotas.SelectedIndex)
             {
                 case 0:
@@ -107,7 +110,7 @@ namespace prySP2_3_Gimnasio_Mammano
                 case 1:
                     cuotas = 3;
                     break;
-                case 2: 
+                case 2:
                     cuotas = 6;
                     break;
             }
@@ -117,7 +120,7 @@ namespace prySP2_3_Gimnasio_Mammano
                 MessageBox.Show("Edad no valida");
                 return;
             }
-            if (meses < 1 && meses > 13)
+            if (meses < 1 && meses > 12)
             {
                 MessageBox.Show("Ingrese un mes valido...Panchxsx");
                 return;
@@ -149,7 +152,7 @@ namespace prySP2_3_Gimnasio_Mammano
                     }
                 }
             }
-            subTotal = (subTotal * porcDescuento) / 100;
+            subTotal = subTotal - (subTotal * porcDescuento) / 100;
 
             if (rbtEfectivo.Checked == true)
             {
@@ -190,29 +193,62 @@ namespace prySP2_3_Gimnasio_Mammano
                              $"Horario: {unSocio.turno}\n" +
                              $"Meses: {unSocio.meses}\n" +
                              $"Forma de pago: {unSocio.formaPago}\n" +
-                             $"Total: {unSocio.total.ToString("C2")}\n" +
-                             $"Valor de cuota: {unSocio.valorCuota.ToString("C2")}";
+                             $"Total: {unSocio.valorCuota.ToString("C2")}\n";
 
+            string mensaje2 = "DATOS DEL SOCIO\n" +
+                  "----------------------------------------\n" +
+                  $"Nombre: {unSocio.nombre}\n" +
+                  $"Edad: {unSocio.edad}\n" +
+                  $"Es estudiante: {unSocio.esEstudiante}\n" +
+                  $"Plan: {unSocio.plan}\n" +
+                  $"Horario: {unSocio.turno}\n" +
+                  $"Meses: {unSocio.meses}\n" +
+                  $"Forma de pago: {unSocio.formaPago}\n" +
+                  $"Total: {unSocio.total.ToString("C2")}\n" +
+                  $"Valor de cuota: {unSocio.valorCuota.ToString("C2")}";
 
-            MessageBox.Show(mensaje, "Resultado del Socio", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (rbtEfectivo.Checked == true)
+            {
+                MessageBox.Show(mensaje, "Resultado del Socio");
+            }
+            else
+            {
+                MessageBox.Show(mensaje2, "Resultado del Socio");
+            }
+                        
+
+            if (i < nombres.Length)
+            {
+                nombres[i] = nombre;
+                i = i + 1;
+            }
+
+            if (i == nombres.Length)
+            {
+                MessageBox.Show("Hasta aca llegaste, campeon");
+                btnCalcular.Enabled = false;
+            }
+
+            Limpieza();
+
         }
 
-       
 
-            public struct SOCIO
-            {
+
+        public struct SOCIO
+        {
             public string nombre;
             public int edad;
-            public string esEstudiante; 
+            public string esEstudiante;
             public string plan;
             public string turno;
             public int meses;
             public string formaPago;
             public decimal total;
             public decimal valorCuota;
-            }
+        }
 
-        
+
 
 
         private void txtEdad_TextChanged(object sender, EventArgs e)
@@ -264,5 +300,21 @@ namespace prySP2_3_Gimnasio_Mammano
         {
             cboTurno.Enabled = true;
         }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nombres.Length; i++)
+            {
+                if (nombres[i] != null)
+                {
+                    lstConsultar.Items.Add(nombres[i]);
+                    btnConsultar.Enabled = false;
+                }                
+            }
+            
+        }
+        
+        
     }
+    
 }

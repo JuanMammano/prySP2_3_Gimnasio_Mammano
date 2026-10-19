@@ -51,6 +51,8 @@
             grbPlan = new GroupBox();
             btnCalcular = new Button();
             btnLimpiar = new Button();
+            btnConsultar = new Button();
+            lstConsultar = new ListBox();
             grbPago.SuspendLayout();
             gpbDatosPersonales.SuspendLayout();
             grbPlan.SuspendLayout();
@@ -288,7 +290,7 @@
             // 
             btnCalcular.Enabled = false;
             btnCalcular.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCalcular.Location = new Point(132, 462);
+            btnCalcular.Location = new Point(83, 462);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(102, 51);
             btnCalcular.TabIndex = 3;
@@ -299,7 +301,7 @@
             // btnLimpiar
             // 
             btnLimpiar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpiar.Location = new Point(251, 462);
+            btnLimpiar.Location = new Point(202, 462);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(96, 51);
             btnLimpiar.TabIndex = 4;
@@ -307,13 +309,34 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
+            // btnConsultar
+            // 
+            btnConsultar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConsultar.Location = new Point(98, 519);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(187, 51);
+            btnConsultar.TabIndex = 5;
+            btnConsultar.Text = "&Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
+            // lstConsultar
+            // 
+            lstConsultar.FormattingEnabled = true;
+            lstConsultar.Location = new Point(12, 576);
+            lstConsultar.Name = "lstConsultar";
+            lstConsultar.Size = new Size(355, 124);
+            lstConsultar.TabIndex = 6;
+            // 
             // frmInscripcion
             // 
             AcceptButton = btnCalcular;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(379, 527);
+            ClientSize = new Size(379, 704);
+            Controls.Add(lstConsultar);
+            Controls.Add(btnConsultar);
             Controls.Add(btnLimpiar);
             Controls.Add(btnCalcular);
             Controls.Add(grbPlan);
@@ -359,5 +382,7 @@
         private GroupBox grbPlan;
         private Button btnCalcular;
         private Button btnLimpiar;
+        private Button btnConsultar;
+        private ListBox lstConsultar;
     }
 }
